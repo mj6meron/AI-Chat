@@ -30,7 +30,7 @@ form.addEventListener("submit", (e) => {
 
       if (data.error) {
         console.log(data.error)
-        responseDiv.textContent = `Error: ${data.error}`;
+        responseDiv.textContent = `${"Something went wrong!"} =(`;
       } else {
         console.log(data);
         responseDiv.classList.add("typing");

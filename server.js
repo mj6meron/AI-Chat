@@ -28,6 +28,7 @@ app.post('/chat', async (req, res) => {
     });
     res.send({response: response.data.choices[0]});
   } catch (error) {
+    console.log(error)
     res.send({error: error});
   }
 });
