@@ -16,23 +16,24 @@ const configuration = new Configuration({
 });
 const openai = new OpenAIApi(configuration);
 
+
 app.post('/chat', async (req, res) => {
-  const prompt = req.body.prompt; // get the prompt from the request body
-  console.log(prompt)
-  try {
-    const response = await openai.createCompletion({
-      model: "text-davinci-003",
-      prompt: prompt,
-      max_tokens: 4090,
-      temperature: 0,
-    });
-    res.send({response: response.data.choices[0]});
-  } catch (error) {
+  console.log("we here")
+  await openai.createCompletion({
+    model: "text-davinci-003",
+    prompt: "Say this is a test",
+    max_tokens: 7,
+    temperature: 0,
+  }).then(response => {
+    res.send({response: response.choices[0].text});
+  }).catch(error => {
     res.send({error: error});
-  }
-});
+  });
+})
+
+
 
 
 app.listen(3000, () => {
   console.log('Server listening on port 3000');
-})
+});
