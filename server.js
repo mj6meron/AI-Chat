@@ -2,6 +2,7 @@ const { Configuration, OpenAIApi } =require("openai");
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors')
+const port = process.env.PORT || 3000;
 
 const app = express();
 
@@ -15,6 +16,10 @@ const configuration = new Configuration({
   apiKey: "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",
 });
 const openai = new OpenAIApi(configuration);
+
+app.get("/", (req, res) => {
+  res.sendFile(__dirname + "/index.html");
+});
 
 app.post('/chat', async (req, res) => {
   const prompt = req.body.prompt; // get the prompt from the request body
@@ -34,6 +39,6 @@ app.post('/chat', async (req, res) => {
 });
 
 
-app.listen(3000, () => {
-  console.log('Server listening on port 3000');
-})
+app.listen(port, () => {
+  console.log(`Server listening on port ${port}`);
+});
