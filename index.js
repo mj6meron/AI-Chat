@@ -10,7 +10,7 @@ form.addEventListener("submit", (e) => {
     return;
   }
   form.querySelector(".form__button").classList.add("loading");
-  fetch("http://localhost:3000/chat", {
+  fetch("https://meronstream.azurewebsites.net/chat", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
